@@ -64,6 +64,17 @@ Step 10: Logging into the container
 -------------------------------------------------------------------
 #Note: The container must be started before we can do this.
 sudo docker exec -it <container-id> /bin/bash
+# inside the terminal...
+apt-get update && apt-get install -y procps
+ps -ef|grep 1
+root@49c1d9b301db:/usr/local/apache2/conf# cat httpd.conf |grep pictolearn
+
+---
+root@49c1d9b301db:/usr/local/apache2/conf# cat httpd.conf |grep pictolearn
+DocumentRoot "/usr/local/apache2/htdocs/pictolearn"
+<Directory "/usr/local/apache2/htdocs/pictolearn">
+---
+
 
 Step 11: Remove all the containers and images
 -------------------------------------------------------------------
@@ -73,13 +84,13 @@ Step 11: Remove all the containers and images
 sudo docker rm <container-id>
 
 #Remove all containers
-sudo docker rm $(docker ps -a -q)
+sudo docker rm $(sudo docker ps -a -q)
 
 # remove image (note: no containers for this image should be running)
 sudo docker rmi <image-id>
 
 # remove all images
-sudo docker rmi $(docker images -q)
+sudo docker rmi $(sudo docker images -q)
 
 ------------------------------------------------------------------
 # remove stopped containers
